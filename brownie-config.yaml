@@ -6,6 +6,7 @@ compiler:
     remappings:
       - '@chainlink=smartcontractkit/chainlink-brownie-contracts@1.1.1'
       - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@3.4.0'
+dotenv: .env
 networks:
   default: development
   development:
@@ -15,11 +16,17 @@ networks:
   goerli:
     vrf_coordinator: "0x2Ca8E0C643bDe4C2E08ab1fA0da3401AdAD7734D"
     eth_usd_price_feed: "0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e"
-    link_token: "0x48731cF7e84dc94C5f84577882c14Be11a5B7456"
+    link_token: "0x326C977E6efc84E512bB9C30f76E30c160eD06FB"
     keyhash: "0x79d3d8832d904592c0bf9818b621522c988bb8b0c05cdc3b15aea1b6e8db0c15"
-    fee: 250000000000000000
-    verify: True
+    fee: 250010000000000000
+    verify: False
   mainnet-fork:
     eth_usd_price_feed: '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419'
+  ftm-main:
+    vrf_coordinator: "0xd5D517aBE5cF79B7e95eC98dB0f0277788aFF634"
+    fee: 500000000000000
+    keyhash: "0x64ae04e5dba58bc08ba2d53eb33fe95bf71f5002789692fe78fb3778f16121c9"
+    verify: True
+    link_token:  "0x6F43FF82CCA38001B6699a8AC47A2d0E66939407"
 wallets:
   from_key: ${PRIVATE_KEY}

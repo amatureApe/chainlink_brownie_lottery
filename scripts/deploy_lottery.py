@@ -39,8 +39,10 @@ def end_lottery():
     account = get_account()
     lottery = Lottery[-1]
     tx = fund_with_link(lottery.address)
-    tx.wait(1)
+    tx.wait(5)
+    print("PING1")
     ending_transaction = lottery.endLottery({"from": account})
+    print("PING2")
     ending_transaction.wait(1)
     time.sleep(60)
     print(f"{lottery.recentWinner()} is the new winner!")

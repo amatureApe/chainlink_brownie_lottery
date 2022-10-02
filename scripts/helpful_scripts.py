@@ -21,10 +21,11 @@ def get_account(index=None, id=None):
         return accounts.load(id)
     if (
         network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS
-        or network.show_acive() in FORKED_LOCAL_ENVIRONMENTS
+        or network.show_active() in FORKED_LOCAL_ENVIRONMENTS
     ):
         return accounts[0]
-    return accounts.add(config["wallets"]["from_key"])
+    else:
+        return accounts.add(config["wallets"]["from_key"])
 
 
 contract_to_mock = {
@@ -74,13 +75,13 @@ def deploy_mocks(decimals=DECIMALS, initial_value=INITIAL_VALUE):
 
 
 def fund_with_link(
-    contract_address, account=None, link_token=None, amount=250000000000000000
+    contract_address, account=None, link_token=None, amount=250010000000000000
 ):
     account = account if account else get_account()
     link_token = link_token if link_token else get_contract("link_token")
     tx = link_token.transfer(contract_address, amount, {"from": account})
-    link_token_contract = interface.LinkTokenInterface(link_token.address)
-    link_token_contract.transfer(contract_address, amount, {"from": account})
+    # link_token_contract = interface.LinkTokenInterface(link_token.address)
+    # link_token_contract.transfer(contract_address, amount, {"from": account})
     tx.wait(1)
     print("Fund contract!")
     return tx
